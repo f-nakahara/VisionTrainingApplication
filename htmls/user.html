@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/user.js"></script>
+    <title>ヴィジョントレーニング</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- メイン部分 -->
+            <div class="col-9 p-0">
+                <div class="container-fluid border">
+                    <div class="row image_space align-items-center">
+                        <div class="col text-center">
+                            <!-- <img src="" style="width:60%;" id="train_image"> -->
+                            <h4 id="train_text"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- サイドバー部分 -->
+            <div class="col-3 p-0">
+                <div class="container border">
+                    <aside class="row align-items-center">
+                        <div class="col mx-auto">
+                            <!-- <div class="card text-center mb-4">
+                                <div class="card-header">残り時間</div>
+                                <div class="card-body">
+                                    <div class="card-text"><strong class="h2">120</strong>秒</div>
+                                </div>
+                            </div> -->
+                            <div class="text-center">
+                                <button class="btn" id="play_btn">再生</button>
+                                <button class="btn" id="stop_btn">停止</button>
+                            </div>
+                            <div class="text-center mt-4">
+                                <div class="row align-items-center p-0">
+                                    <label class="col-4 m-0">表示時間</label>
+                                    <div class="col p-0 mr-2">
+                                        <!-- <input type=" text" id="d_time" class="form-control" value="0.50"> -->
+                                        <select class="form-control" id="d_time">
+                                            <option>0.001</option>
+                                            <option>0.005</option>
+                                            <option>0.01</option>
+                                            <option>0.05</option>
+                                            <option>0.1</option>
+                                            <option>0.2</option>
+                                            <option>0.3</option>
+                                            <option>0.4</option>
+                                            <option>0.5</option>
+                                            <option>0.6</option>
+                                            <option>0.7</option>
+                                            <option>0.8</option>
+                                            <option>0.9</option>
+                                            <option>1.0</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="col-1 mr-1 p-1">
+                                        <button class="btn btn-rounded-circle" id="d_up_btn">+</button>
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-rounded-circle" id="d_down_btn">-</button>
+                                    </div> -->
+                                </div>
+                                <div class="row align-items-center mt-2">
+                                    <label class="col-4 m-0">表示感覚</label>
+                                    <div class="col p-0 mr-2">
+                                        <!-- <input type="text" id="i_time" class="form-control" value="4.0"> -->
+                                        <select class="form-control" id="i_time">
+                                            <option>0.3</option>
+                                            <option>0.5</option>
+                                            <option>0.7</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="col-1 mr-1 p-1">
+                                        <button class="btn btn-rounded-circle" id="i_up_btn">+</button>
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-rounded-circle" id="i_down_btn">-</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
