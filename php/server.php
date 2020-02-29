@@ -52,13 +52,6 @@
         }
     }
 
-    // 画像の取得
-    function getImage(){
-        $result = glob('../images/*');
-        shuffle($result);
-        echo(json_encode($result,JSON_UNESCAPED_UNICODE));
-    }
-
     // テキストファイルの取得
     function getTheme(){
         $file_name = "../theme.txt";
@@ -70,7 +63,6 @@
     switch($_POST["func"]){
         case "login": login($_POST["user_id"],$_POST["user_pw"]); break;
         case "loginCheck": loginCheck(); break;
-        case "getImage": getImage(); break;
         case "getTheme": getTheme(); break;
     }
 ?>
