@@ -21,18 +21,43 @@
 
     // ログインする
     function login($user_id, $user_pw){
-        $db = new SQLite3("../db/app.db");
+        // // データベース処理
+        // $db = new SQLite3("../db/app.db");
+        // try{
+        //     $user = $db->query("SELECT pw FROM user WHERE id='$user_id'");
+        //     while ($result = $user->fetchArray(SQLITE3_ASSOC)){
+        //         $pw = $result["pw"];
+        //         if($pw == $user_pw){
+        //             setcookie("user_id",$user_id);
+        //             setcookie("user_pw",$user_pw);
+        //             echo true;
+        //         }
+        //         else
+        //             echo false;
+        //     }
+        // }
+        // catch(Exception $e){
+        //     echo false;
+        // }
+
+        // テキストファイル処理
+        $file_name = "../admin/user.txt";
+        $user_list_file = file($file_name,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $user_list = array();
+        foreach($user_list_file as $user){
+            $user_info = explode(",",$user);
+            $user_idx = preg_replace("/( |　)/", "", $user_info[0]);
+            $user_pwx = preg_replace("/( |　)/", "", $user_info[1]);
+            if((strlen($user_id) == 5) && (strlen($user_pw) >= 6) && (strlen($user_pw) <= 20))
+                $user_list += array($user_idx=>$user_pwx);
+        }
         try{
-            $user = $db->query("SELECT pw FROM user WHERE id='$user_id'");
-            while ($result = $user->fetchArray(SQLITE3_ASSOC)){
-                $pw = $result["pw"];
-                if($pw == $user_pw){
-                    setcookie("user_id",$user_id);
-                    setcookie("user_pw",$user_pw);
-                    echo true;
-                }
-                else
-                    echo false;
+            $user_pwx = $user_list[$user_id];
+            if($user_pw == $user_pwx){
+                echo true;
+            }
+            else{
+                echo false;
             }
         }
         catch(Exception $e){
@@ -52,17 +77,31 @@
         }
     }
 
-    // テキストファイルの取得
+    // theme.txtの取得とランダムに並び替え
     function getTheme(){
-        $file_name = "../theme.txt";
+        $file_name = "../admin/theme.txt";
         $theme_list = file($file_name,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         shuffle($theme_list);
         echo(json_encode($theme_list,JSON_UNESCAPED_UNICODE));
+    }
+
+    function getTime($type){
+        if($type=="display"){
+            $file_name = "../admin/displayTime.txt";
+            $display_time_list = file($file_name,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            echo(json_encode($display_time_list,JSON_UNESCAPED_UNICODE));
+        }
+        else if($type == "interval"){
+            $file_name = "../admin/intervalTime.txt";
+            $interval_time_list = file($file_name,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            echo(json_encode($interval_time_list,JSON_UNESCAPED_UNICODE));
+        }
     }
 
     switch($_POST["func"]){
         case "login": login($_POST["user_id"],$_POST["user_pw"]); break;
         case "loginCheck": loginCheck(); break;
         case "getTheme": getTheme(); break;
+        case "getTime": getTime($_POST["type"]); break;
     }
 ?>
