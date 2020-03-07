@@ -20,7 +20,7 @@ $(window).on("load resize", function () {
 // 表示時間（displayTime）の取得
 function getDisplayTime() {
     $.ajax({
-        url: "/php/server.php",
+        url: "../php/server.php",
         type: "post",
         dataType: "json",
         async: false,
@@ -46,7 +46,7 @@ function setDisplayTime() {
 // 表示間隔（intervalTime）の取得
 function getIntervalTime() {
     $.ajax({
-        url: "/php/server.php",
+        url: "../php/server.php",
         type: "post",
         dataType: "json",
         async: false,
@@ -72,7 +72,7 @@ function setIntervalTime() {
 // ログインチェック
 function loginCheck() {
     $.ajax({
-        url: "/php/server.php",
+        url: "../php/server.php",
         type: "post",
         async: false,
         data: {
@@ -81,10 +81,8 @@ function loginCheck() {
     })
         .done(function (data) {
             if (data == true) {
-                console.log("権限あり");
             } else {
-                console.log("権限なし");
-                window.location.href = "/";
+                window.location.href = "../";
             }
         });
 }
@@ -93,10 +91,8 @@ function loginCheck() {
 function play() {
     $("#play_btn").on("click", function () {
         function controlTheme() {
-            console.log("テキスト表示");
             $("#train_text").text(THEME_LIST[num]);
             setTimeout(function () {
-                console.log("テキスト非表示");
                 $("#train_text").text("");
                 num += 1;
                 if (num == len) {
@@ -104,7 +100,6 @@ function play() {
                 }
             }, d_time * 1000);
         }
-        console.log("開始");
         $("#play_btn").prop("disabled", true);
         d_time = Number($("#d_time").val());
         i_time = Number($("#i_time").val());
@@ -124,7 +119,6 @@ function play() {
 function stop() {
     $("#stop_btn").on("click", function () {
         clearInterval(timer);
-        console.log("停止");
         $("#play_btn").prop("disabled", false);
         $("#train_image").attr({
             "src": ""
@@ -136,7 +130,7 @@ function stop() {
 // お題の取得
 function getTheme() {
     $.ajax({
-        url: "/php/server.php",
+        url: "../php/server.php",
         type: "post",
         dataType: "json",
         async: false,
@@ -145,7 +139,6 @@ function getTheme() {
         }
     })
         .done(function (data) {
-            console.log(data);
             THEME_LIST = data;
         });
 }

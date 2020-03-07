@@ -4,10 +4,9 @@ function loginCheck() {
         e.preventDefault();
         var user_id = $(":text[name='user_id']").val()
         var user_pw = $(":password[name='user_pw']").val()
-        // console.log("ID：" + user_id);
-        // console.log("PW：" + user_pw);
+
         $.ajax({
-            url: "/php/server.php",
+            url: "./php/server.php",
             type: "post",
             data: {
                 "func": "login",
@@ -17,11 +16,9 @@ function loginCheck() {
         })
             .done(function (data) {
                 if (data == true) {
-                    // console.log(data);
-                    window.location.href = "/htmls/user.html";
+                    window.location.href = "./htmls/user.html";
                 }
                 else {
-                    // console.log(data)
                     $("#err_message").text("IDまたはパスワードに誤りがあります。");
                 }
 

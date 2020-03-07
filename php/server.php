@@ -54,6 +54,8 @@
         try{
             $user_pwx = $user_list[$user_id];
             if($user_pw == $user_pwx){
+                setcookie("user_id",$user_id);
+                setcookie("user_pw",$user_pw);
                 echo true;
             }
             else{
@@ -79,9 +81,11 @@
 
     // theme.txtの取得とランダムに並び替え
     function getTheme(){
+        $roop = rand(1,10);
         $file_name = "../admin/theme.txt";
         $theme_list = file($file_name,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        shuffle($theme_list);
+        for($i=0;$i<$roop;$i++)
+            shuffle($theme_list);
         echo(json_encode($theme_list,JSON_UNESCAPED_UNICODE));
     }
 
